@@ -1,0 +1,238 @@
+<ScreenOne>:
+    Button:
+        text: app.clockLabel.text
+        on_press: root.manager.current = 'screen2'
+        background_normal: ''
+        background_color: 0, 0, 0, 0
+
+<ScreenTwo>:
+#to get multiple scrollviews use boxlayout and set the orientation to horizontal to get them side by side
+    ScrollView:
+        # size: self.size <<<< not needed
+        GridLayout:
+            orientation: 'vertical'
+            # pos: 200, 0 <<< pos isn't really needed as
+            # there aren't multiple children.
+            size_hint_y: None
+            cols: 1
+            spacing: dp(20)
+
+            # Padding can be used to center the buttons in a gridlayout.
+            # Set the horizontal padding to whatever you want to 'push' in
+            # from both sides.
+            padding: dp(50), dp(0) # horizontal, vertical
+
+            # Below sets the height of all the children
+            # dp() calculates pixel density so looks the same
+            # regardless of display.
+            row_default_height: dp(30)
+
+            height: self.minimum_height
+            Button:
+                text: "Music Player"
+                on_press: root.manager.current = 'screen3'
+
+                # If you want to set a size first you need to set a
+                # size_hint to 'None'. Seeing as we've already set the height
+                # for all of the buttons above we can just set the width.
+
+                # size: 40, 200 <<< not needed
+
+                # Comment out 'size_hint_x' and 'width' above to make this button match the rest.
+
+                # Below would center the widget if it was a boxlayout, you can't
+                # do it in a gridlayout however you can use padding defined above.
+                # pos_hint: {'center_x': 0.5}
+            Button:
+                text: "App 1"
+            Button:
+                text: "Bluetooth"
+                on_press: root.manager.current = 'Bluetooth'
+            Button:
+                text: "App 3"
+            Button:
+                text: "App 4"
+            Button:
+                text: "Sensors"
+                on_press: root.manager.current = 'Sensors'
+            Button:
+                text: "App 6"
+            Button:
+                text: "App 7"
+            Button:
+                text: "App 8"
+            Button:
+                text: "On SCREEN 2 >> Go to Screen 1"
+                on_press: root.manager.current = 'screen1'
+
+
+<ScreenThree>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: "Back"
+            on_press: root.manager.current = 'screen2'
+
+        Button:
+            text: "Sail - AWOLNATION"
+            on_press: root.manager.current = 'Sail'
+
+        Button:
+            text: "Shotgun - George Ezra"
+            on_press: root.manager.current = 'Shotgun'
+
+        Button:
+            text: "Exit"
+            on_press: root.manager.current = 'screen1'
+
+<Shotgun>:
+    BoxLayout
+        orientation: 'horizontal'
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: "Back"
+            on_press: root.manager.current = 'screen3'
+
+        Button:
+            text: "play"
+            # Pass shotgun.wav in as the sound path.
+            on_press: app.play_sound('shotgun.wav')
+
+        Button:
+            text: "Stop"
+            on_press: app.stop_sound()
+
+<Bluetooth>:
+    BoxLayout
+        orientation: 'horizontal'
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: "Back"
+            on_press: root.manager.current = 'screen2'
+
+
+<Sail>:
+    BoxLayout
+        orientation: 'horizontal'
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: "Back"
+            on_press: root.manager.current = 'screen3'
+
+        Button:
+            text: "play"
+            # Pass sail.wav in as the sound path.
+            on_press: app.play_sound('sail.wav')
+
+        Button:
+            text: "Stop"
+            on_press: app.stop_sound()
+
+
+<Sensors>:
+    GridLayout
+        cols: 2
+        rows: 4
+        Label:
+            text: 'Sensor 1'
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            height: dp(20)
+            width: dp(100)
+        Label:
+            id: 'Sensor 1'
+            text: str(app.Sensor1) #Sensor 1 incoming arduino data to display here
+            font_size: 20
+            height: dp(80)
+            width: dp(100)
+        Label:
+            text: 'Sensor 2'
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            height: dp(20)
+            width: dp(100)
+        Label:
+            id: 'Sensor 2'
+            text: 'Reading Here' #somehow link the incoming arduino data to display here
+            font_size: 20
+            height: dp(80)
+            width: dp(100)
+        Label:
+            text: 'Sensor 3'
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            height: dp(20)
+            width: dp(100)
+        Label:
+            id: 'Sensor 3'
+            text: 'Reading Here' #somehow link the incoming arduino data to display here
+            font_size: 20
+            height: dp(80)
+            width: dp(100)
+        Label:
+            text: 'Sensor 4'
+            background_normal: ''
+            background_color: 0, 0, 0, 0
+            height: dp(20)
+            width: dp(100)
+        Label:
+            id: 'Sensor 4'
+            text: 'Reading Here' #somehow link the incoming arduino data to display here
+            font_size: 20
+            height: dp(80)
+            width: dp(100)
+
+<Manager>: #root widget
+    id: screen_manager
+
+    screen_one: screen_one
+    screen_two: screen_two
+    screen_three: screen_three
+    screen_sail: screen_sail
+    screen_shotgun: screen_shotgun
+    screen_bluetooth: screen_bluetooth
+    screen_sensors: screen_sensors
+
+    ScreenOne:
+        id: screen_one
+        name: 'screen1'
+        manager: screen_manager
+
+    ScreenTwo:
+        id: screen_two
+        name: 'screen2'
+        manager: screen_manager
+
+    ScreenThree:
+        id: screen_three
+        name: 'screen3'
+        manager: screen_manager
+
+    Sail:
+        id: screen_sail
+        name: 'Sail'
+        manager: screen_manager
+
+    Shotgun:
+        id: screen_shotgun
+        name: 'Shotgun'
+        manager: screen_manager
+
+    Bluetooth:
+        id: screen_bluetooth
+        name: 'Bluetooth'
+        manager: screen_manager
+
+    Sensors:
+        id: screen_sensors
+        name: 'Sensors'
+        manager: screen_manager
