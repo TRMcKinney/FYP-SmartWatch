@@ -4,6 +4,8 @@ My Mechanical Engineering (MEng) Final Year Project (FYP)
 
 This project was also documented on youtube (https://www.youtube.com/@thomasmckinney5449) and hackday (https://hackaday.io/project/164071-gesture-controlled-smartwatch)
 
+Here you will find the main code base for the GUI I built to emulate a smart watch interface of sorts :)
+
 The aim of this project is to assess the use of Force Sensitive Resistors (FSR’s) in Human Machine Interfaces as a potential input mechanism to increase interface bandwidths. The project used a Raspberry Pi as the base of a test bed emulating a smartwatch, this was connected to FSR sensors, via an Arduino, to detect force exertions. A simple Graphical User Interface (GUI) was programmed to imitate a smartwatch interface with some working functionality including a music player, sensor data information and time/date. The FSR sensor control was assessed with music playback using hand and finger gestures to start or stop the playback.
 
 https://github.com/user-attachments/assets/ca88a0d5-997f-42cb-8301-6777aa2eee30
